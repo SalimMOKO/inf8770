@@ -19,7 +19,7 @@ dictsymb = []  # Dictionnaire des substitutions
 debut = ord(Message[0])  # Origine trouver un code de substitution. Et pour avoir des caractères imprimables...
 
 remplacementpossible = True
-while remplacementpossible == True:
+while remplacementpossible:
     # Recherche des paires
     paires = []
     for i in range(0, len(Message) - 1):
