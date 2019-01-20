@@ -43,8 +43,8 @@ while remplacementpossible == True:
             LUToctetsdispo[debut] = False
             dictsymb += [[paires[0][0], chr(debut)]]
         else:
-            print(
-                "Il n'y a plus d'octets disponible!")  # Bien sûr, ce n'est pas exact car la recherche commence à Message[0]
+            # Bien sûr, ce n'est pas exact car la recherche commence à Message[0]
+            print("Il n'y a plus d'octets disponible!")
 
         print(Message)
         print(dictsymb)
