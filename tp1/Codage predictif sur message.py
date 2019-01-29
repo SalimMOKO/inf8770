@@ -6,7 +6,7 @@ def rgb2gray(rgb):
     return np.dot(rgb[:, :], [0.299, 0.587, 0.114])
 
 
-fig1 = py.figure(figsize=(10, 10))
+'''fig1 = py.figure(figsize=(10, 10))
 imagelue = py.imread('RGB.jpg')
 image = imagelue.astype('float')
 image = rgb2gray(image)
@@ -17,11 +17,23 @@ py.show()
 hist, intervalles = np.histogram(imageout, bins=256)
 py.bar(intervalles[:-1], hist, width=2)
 py.xlim(min(intervalles)-1, max(intervalles))
+py.show()'''
+
+Message = "ABAABAABACABBABCDAADACABABAAABAABBABABAABAAB"
+fig1 = py.figure(figsize=(10, 10))
+image = Message.astype('float')
+imageout = image.astype('uint8')
+py.imshow(imageout, cmap=py.get_cmap('gray'))
 py.show()
 
-col = image[:, 0]
-image = np.column_stack((col, image))
-col = image[:,len(image[0])-1]
+hist, intervalles = np.histogram(imageout, bins=256)
+py.bar(intervalles[:-1], hist, width=2)
+py.xlim(min(intervalles)-1, max(intervalles))
+py.show()
+
+col = Message[:, 0]
+image = np.column_stack((col, Message))
+col = image[:, len(image[0])-1]
 image = np.column_stack((col, image))
 row = image[0, :]
 image = np.row_stack((row, image))

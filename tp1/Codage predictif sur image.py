@@ -1,23 +1,28 @@
 import numpy as np
 import matplotlib.pyplot as py
+import os
 
 
 def rgb2gray(rgb):
     return np.dot(rgb[:, :], [0.299, 0.587, 0.114])
 
 
+test1 = 'test1.jpg'
+test2 = 'test2.jpg'
+test3 = 'test3.jpg'
+print(os.path.getsize(test3), 'bytes')
 fig1 = py.figure(figsize=(10, 10))
-imagelue = py.imread('RGB.jpg')
+imagelue = py.imread(test3)
 image = imagelue.astype('float')
 image = rgb2gray(image)
 imageout = image.astype('uint8')
 py.imshow(imageout, cmap=py.get_cmap('gray'))
-py.show()
+# py.show()
 
 hist, intervalles = np.histogram(imageout, bins=256)
 py.bar(intervalles[:-1], hist, width=2)
 py.xlim(min(intervalles)-1, max(intervalles))
-py.show()
+# py.show()
 
 col = image[:, 0]
 image = np.column_stack((col, image))
@@ -40,18 +45,17 @@ for i in range(1,len(image)-2):
 hist, intervalles = np.histogram(erreur, bins=100)
 py.bar(intervalles[:-1], hist, width=2)
 py.xlim(min(intervalles)-1, max(intervalles))
-py.show()
+# py.show()
 
 fig2 = py.figure(figsize=(10, 10))
 imageout = imagepred.astype('uint8')
 py.imshow(imageout, cmap=py.get_cmap('gray'))
-py.show()
+# py.show()
+py.imsave('output.jpg', imageout, cmap=py.get_cmap('gray'))
+print(os.path.getsize('output.jpg'), 'bytes')
 
 fig3 = py.figure(figsize=(10, 10))
 erreur = abs(erreur)*5
 imageout = erreur.astype('uint8')
 py.imshow(imageout, cmap=py.get_cmap('gray'))
-py.show()
-
-
-
+# py.show()
