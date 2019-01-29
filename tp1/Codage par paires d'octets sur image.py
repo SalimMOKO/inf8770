@@ -43,7 +43,9 @@ while remplacementpossible:
     for i in range(0, len(Message) - 1):
         temppaire = Message[i] + Message[i + 1]
         if not list(filter(lambda x: x[0] == temppaire, paires)):  # Si la liste retournée par filter est vide.
-            paires += [[temppaire, len(re.findall(temppaire, Message, overlapped=True))]]
+            # au lieu de ; len(re.findall(temppaire, Message, overlapped=True))
+            occurences = Message.count(temppaire)
+            paires += [[temppaire, occurences]]
 
     # Trouve la paire avec le plus de répétitions.
     paires = sorted(paires, key=lambda x: x[1], reverse=True)
