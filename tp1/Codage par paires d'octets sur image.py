@@ -21,7 +21,7 @@ imageout = list(map(toASCII, imageout))
 
 Message = ''.join(imageout)
 
-LUToctetsdispo = [True] * 256
+LUToctetsdispo = [True] * 0xffff
 dictsymb = [Message[0]]
 LUToctetsdispo[ord(Message[0])] = False
 nbsymboles = 1
@@ -55,9 +55,9 @@ while remplacementpossible:
         print(paires)
         print("La paire ", paires[0][0], " est la plus fréquente avec ", paires[0][1], "répétitions")
         # Cherche un octet non utilisé
-        while debut < 256 and LUToctetsdispo[debut] == False:
+        while debut < 0xffff and LUToctetsdispo[debut] == False:
             debut += 1
-        if debut < 256:
+        if debut < 0xffff:
             # On substitut
             Message = Message.replace(paires[0][0], chr(debut))
             LUToctetsdispo[debut] = False
@@ -66,7 +66,8 @@ while remplacementpossible:
             # Bien sûr, ce n'est pas exact car la recherche commence à Message[0]
             print("Il n'y a plus d'octets disponible!")
 
-        print(Message)
+        # Facultatif
+        # print(Message)
         print(dictsymb)
     else:
         remplacementpossible = False
