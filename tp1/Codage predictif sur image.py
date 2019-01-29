@@ -10,6 +10,7 @@ def rgb2gray(rgb):
 test1 = 'test1.jpg'
 test2 = 'test2.jpg'
 test3 = 'test3.jpg'
+
 print(os.path.getsize(test3), 'bytes')
 fig1 = py.figure(figsize=(10, 10))
 imagelue = py.imread(test3)
@@ -26,7 +27,7 @@ py.xlim(min(intervalles)-1, max(intervalles))
 
 col = image[:, 0]
 image = np.column_stack((col, image))
-col = image[:,len(image[0])-1]
+col = image[:, len(image[0])-1]
 image = np.column_stack((col, image))
 row = image[0, :]
 image = np.row_stack((row, image))
