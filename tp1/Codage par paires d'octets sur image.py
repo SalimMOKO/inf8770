@@ -1,5 +1,4 @@
 import numpy as np
-import regex as re
 import matplotlib.pyplot as py
 
 
@@ -16,9 +15,7 @@ imagelue = py.imread('test4.jpg')
 image = imagelue.astype('float')
 image = rgb2gray(image)
 imageout = image.astype('uint8').astype('str').flatten()
-
 imageout = list(map(toASCII, imageout))
-
 Message = ''.join(imageout)
 
 LUToctetsdispo = [True] * 0xffff
@@ -55,7 +52,7 @@ while remplacementpossible:
         print(paires)
         print("La paire ", paires[0][0], " est la plus fréquente avec ", paires[0][1], "répétitions")
         # Cherche un octet non utilisé
-        while debut < 0xffff and LUToctetsdispo[debut] == False:
+        while debut < 0xffff and LUToctetsdispo[debut] is False:
             debut += 1
         if debut < 0xffff:
             # On substitut

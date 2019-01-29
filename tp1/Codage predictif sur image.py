@@ -7,13 +7,11 @@ def rgb2gray(rgb):
     return np.dot(rgb[:, :], [0.299, 0.587, 0.114])
 
 
-test1 = 'test1.jpg'
-test2 = 'test2.jpg'
-test3 = 'test3.jpg'
+nomImage = 'test4.jpg'
 
-print(os.path.getsize(test3), 'bytes')
+print(os.path.getsize(nomImage), 'bytes')
 fig1 = py.figure(figsize=(10, 10))
-imagelue = py.imread(test3)
+imagelue = py.imread(nomImage)
 image = imagelue.astype('float')
 image = rgb2gray(image)
 imageout = image.astype('uint8')
@@ -53,6 +51,8 @@ imageout = imagepred.astype('uint8')
 py.imshow(imageout, cmap=py.get_cmap('gray'))
 # py.show()
 py.imsave('output.jpg', imageout, cmap=py.get_cmap('gray'))
+
+# Taille apres codage (Attention a la compression de Windows)
 print(os.path.getsize('output.jpg'), 'bytes')
 
 fig3 = py.figure(figsize=(10, 10))
