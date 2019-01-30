@@ -1,13 +1,15 @@
 import numpy as np
 import matplotlib.pyplot as py
 import os
+import time
 
 
 def rgb2gray(rgb):
     return np.dot(rgb[:, :], [0.299, 0.587, 0.114])
 
 
-nomImage = 'test4.jpg'
+start = time.time()
+nomImage = 'test6.jpg'
 
 print(os.path.getsize(nomImage), 'bytes')
 fig1 = py.figure(figsize=(10, 10))
@@ -60,3 +62,7 @@ erreur = abs(erreur)*5
 imageout = erreur.astype('uint8')
 py.imshow(imageout, cmap=py.get_cmap('gray'))
 # py.show()
+
+end = time.time()
+
+print('Temps d\'execution du programme', end-start, 'secondes')
