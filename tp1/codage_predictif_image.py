@@ -2,16 +2,22 @@ import numpy as np
 import matplotlib.pyplot as py
 import os
 import time
+from anytree import Node, RenderTree, PreOrderIter, AsciiStyle
+import codage_huffman as huffman
 
 
 def rgb2gray(rgb):
     return np.dot(rgb[:, :], [0.299, 0.587, 0.114])
 
 
+def toASCII(element):
+    return chr(int(element))
+
+
 start = time.time()
 nomImage = 'test1.jpg'
 
-print(os.path.getsize(nomImage), 'bytes')
+# print(os.path.getsize(nomImage), 'bytes')
 fig1 = py.figure(figsize=(10, 10))
 imagelue = py.imread(nomImage)
 image = imagelue.astype('float')
@@ -19,6 +25,10 @@ image = rgb2gray(image)
 imageout = image.astype('uint8')
 py.imshow(imageout, cmap=py.get_cmap('gray'))
 # py.show()
+
+messageInitial = ''.join(list(map(toASCII, imageout.astype('uint8').astype('str').flatten())))
+longueurInitiale = len(messageInitial)
+print('Longueur initiale :', longueurInitiale)
 
 hist, intervalles = np.histogram(imageout, bins=256)
 py.bar(intervalles[:-1], hist, width=2)
@@ -49,20 +59,26 @@ py.xlim(min(intervalles)-1, max(intervalles))
 # py.show()
 
 fig2 = py.figure(figsize=(10, 10))
-imageout = imagepred.astype('uint8')
-py.imshow(imageout, cmap=py.get_cmap('gray'))
+imageout = imagepred.astype('uint8').astype('str').flatten()
+# py.imshow(imageout, cmap=py.get_cmap('gray'))
 # py.show()
 
 # Taille apres codage (Attention a la compression de Windows)
-py.imsave('output.jpg', imageout, cmap=py.get_cmap('gray'))
-print(os.path.getsize('output.jpg'), 'bytes')
+# py.imsave('output.jpg', imageout, cmap=py.get_cmap('gray'))
+# print(os.path.getsize('output.jpg'), 'bytes')
 
-fig3 = py.figure(figsize=(10, 10))
+'''fig3 = py.figure(figsize=(10, 10))
 erreur = abs(erreur)*5
 imageout = erreur.astype('uint8')
 py.imshow(imageout, cmap=py.get_cmap('gray'))
-# py.show()
+# py.show()'''
+
+# Application de Huffman
+imageout = list(map(toASCII, imageout))
+Message = ''.join(imageout)
+huffman.codage(Message)
+# Fin de Huffman
 
 end = time.time()
 
-print('Temps d\'execution du programme', end-start, 'secondes')
+print('Temps d\'execution du programme', end - start, 'secondes')
