@@ -9,7 +9,7 @@ def rgb2gray(rgb):
 
 
 start = time.time()
-nomImage = 'test6.jpg'
+nomImage = 'test1.jpg'
 
 print(os.path.getsize(nomImage), 'bytes')
 fig1 = py.figure(figsize=(10, 10))
@@ -38,7 +38,7 @@ matpred = [[0.33, 0.33], [0.33, 0.0]]
 
 erreur = np.zeros((len(image)-2, len(image[0])-2))
 imagepred = np.zeros((len(image)-2, len(image[0])-2))
-for i in range(1,len(image)-2):
+for i in range(1, len(image)-2):
     for j in range(1, len(image[0])-2):
         imagepred[i][j] = image[i-1][j-1]*matpred[0][0]+image[i-1][j]*matpred[0][1]+image[i][j-1]*matpred[1][0]
         erreur[i][j] = imagepred[i][j]-image[i][j]
@@ -52,9 +52,9 @@ fig2 = py.figure(figsize=(10, 10))
 imageout = imagepred.astype('uint8')
 py.imshow(imageout, cmap=py.get_cmap('gray'))
 # py.show()
-py.imsave('output.jpg', imageout, cmap=py.get_cmap('gray'))
 
 # Taille apres codage (Attention a la compression de Windows)
+py.imsave('output.jpg', imageout, cmap=py.get_cmap('gray'))
 print(os.path.getsize('output.jpg'), 'bytes')
 
 fig3 = py.figure(figsize=(10, 10))
