@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as py
+import time
 
 
 def rgb2gray(rgb):
@@ -10,8 +11,9 @@ def toASCII(element):
     return chr(int(element))
 
 
+start = time.time()
 fig1 = py.figure(figsize=(10, 10))
-imagelue = py.imread('test4.jpg')
+imagelue = py.imread('test1.jpg')
 image = imagelue.astype('float')
 image = rgb2gray(image)
 imageout = image.astype('uint8').astype('str').flatten()
@@ -69,5 +71,7 @@ while remplacementpossible:
     else:
         remplacementpossible = False
 
+end = time.time()
 print("Longueur = {0}".format(np.ceil(np.log2(nbsymboles))*len(Message)))
 print("Longueur originale = {0}".format(longueurOriginale))
+print('Temps d\'execution du programme', end-start, 'secondes')

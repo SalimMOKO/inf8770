@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5b2c1297-5893-4534-9415-622793a25bb7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp1/Codage predictif sur image.py" beforeDir="false" afterPath="$PROJECT_DIR$/tp1/Codage predictif sur image.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp1/output.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/tp1/output.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp1/test1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/tp1/test1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp1/test2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/tp1/test2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp1/test3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp1/test4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp1/test5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp1/test6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp1/Codage par paires d'octets sur image.py" beforeDir="false" afterPath="$PROJECT_DIR$/tp1/Codage par paires d'octets sur image.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,42 +36,35 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1116" />
+          <entry key="py" value="1133" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1116" />
+          <entry key="Python" value="1133" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tp1/Codage par paires d'octets sur image.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="18" selection-start-column="18" selection-end-column="18" />
+            <state relative-caret-position="563">
+              <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp1/test2.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp1/output.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tp1/Codage predictif sur image.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="40" column="18" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+            <state relative-caret-position="721">
+              <caret line="65" selection-start-line="65" selection-end-line="67" selection-end-column="63" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -109,12 +95,12 @@
         <option value="$PROJECT_DIR$/tp1/Codage par paires d'octets.py" />
         <option value="$PROJECT_DIR$/tp1/Codage predictif sur message.py" />
         <option value="$PROJECT_DIR$/tp1/testImagetoString.py" />
-        <option value="$PROJECT_DIR$/tp1/Codage par paires d'octets sur image.py" />
         <option value="$PROJECT_DIR$/tp1/Codage predictif sur image.py" />
+        <option value="$PROJECT_DIR$/tp1/Codage par paires d'octets sur image.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="351" />
     <option name="y" value="-13" />
     <option name="width" value="974" />
@@ -182,7 +168,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Codage predictif sur image">
+  <component name="RunManager" selected="Python.Codage par paires d'octets sur image">
     <configuration name="Codage par paires d'octets sur image" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="inf8770" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -297,8 +283,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Codage predictif sur image" />
         <item itemvalue="Python.Codage par paires d'octets sur image" />
+        <item itemvalue="Python.Codage predictif sur image" />
         <item itemvalue="Python.testImagetoString" />
         <item itemvalue="Python.Codage predictif sur message" />
         <item itemvalue="Python.Codage par paires d'octets" />
@@ -322,12 +308,12 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14436248" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14436248" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.329718" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2451193" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2451193" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -341,12 +327,12 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14436248" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14436248" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.329718" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2451193" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2451193" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -398,13 +384,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp1/Codage par paires d'octets sur image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="18" selection-start-column="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tp1/test4.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -428,8 +407,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tp1/Codage predictif sur image.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="40" column="18" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+        <state relative-caret-position="721">
+          <caret line="65" selection-start-line="65" selection-end-line="67" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp1/Codage par paires d'octets sur image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="563">
+          <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
