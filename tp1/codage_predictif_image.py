@@ -1,8 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as py
-import os
 import time
-from anytree import Node, RenderTree, PreOrderIter, AsciiStyle
 import codage_huffman as huffman
 
 
@@ -49,7 +47,6 @@ for i in range(1, len(image)-2):
 hist, intervalles = np.histogram(erreur, bins=100)
 py.bar(intervalles[:-1], hist, width=2)
 py.xlim(min(intervalles)-1, max(intervalles))
-# py.show()
 
 fig2 = py.figure(figsize=(10, 10))
 imageout = imagepred.astype('uint8').astype('str').flatten()
