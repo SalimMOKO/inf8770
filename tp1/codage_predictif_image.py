@@ -13,7 +13,7 @@ def toASCII(element):
 
 
 start = time.time()
-nomImage = 'test1.jpg'
+nomImage = 'Image01hyp03.jpg'
 
 fig1 = py.figure(figsize=(10, 10))
 imagelue = py.imread(nomImage)

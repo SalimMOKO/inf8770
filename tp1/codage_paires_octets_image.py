@@ -12,8 +12,10 @@ def toASCII(element):
 
 
 start = time.time()
+nomImage = 'Image02hyp03.jpg'
+
 fig1 = py.figure(figsize=(10, 10))
-imagelue = py.imread('test1.jpg')
+imagelue = py.imread(nomImage)
 image = imagelue.astype('float')
 image = rgb2gray(image)
 imageout = image.astype('uint8').astype('str').flatten()
