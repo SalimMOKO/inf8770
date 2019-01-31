@@ -52,9 +52,6 @@ def paires(nomImage):
         paires = sorted(paires, key=lambda x: x[1], reverse=True)
 
         if paires[0][1] > 1:
-            # Remplace la paire
-            print(paires)
-            print("La paire ", paires[0][0], " est la plus fréquente avec ", paires[0][1], "répétitions")
             # Cherche un octet non utilisé
             while debut < 0xffff and LUToctetsdispo[debut] is False:
                 debut += 1
@@ -63,13 +60,7 @@ def paires(nomImage):
                 Message = Message.replace(paires[0][0], chr(debut))
                 LUToctetsdispo[debut] = False
                 dictsymb += [[paires[0][0], chr(debut)]]
-            else:
-                # Bien sûr, ce n'est pas exact car la recherche commence à Message[0]
-                print("Il n'y a plus d'octets disponible!")
 
-            # Facultatif
-            # print(Message)
-            print(dictsymb)
         else:
             remplacementpossible = False
 
