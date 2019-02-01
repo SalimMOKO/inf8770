@@ -6,8 +6,8 @@ nomsImage = ['Image01hyp01.jpg', 'Image02hyp01.jpg', 'Image03hyp01.jpg',
              'Image01hyp05.jpg', 'Image02hyp05.jpg', 'Image03hyp05.jpg', ]
 
 for nom in nomsImage:
-    print('Predictif  :')
     print('-----Image  :', nom)
+    print('Predictif  :')
     pred.predictif(nom)
     print('Par paires  :')
     paires.paires(nom)
