@@ -100,17 +100,21 @@ def RGBtoYCbCr420(nomImage):
         if ligne % 2 == 0:
             for colonne in range(largeur):
                 """ TODO: Calculer les Y """
+                pixel = image[ligne][colonne]
+                y = getY(pixel[0], pixel[1], pixel[2])
                 if colonne % 2 == 0:
-                    pixel = image[ligne][colonne]
-                    y = getY(pixel[0], pixel[1], pixel[2])
-                    code[ligne][colonne][0] = getY(pixel[0], pixel[1], pixel[2])
+                    code[ligne][colonne][0] = y
                     code[ligne][colonne][1] = getCb(pixel[1], y)
                     code[ligne][colonne][2] = getCr(pixel[0], y)
                 else:
                     code[ligne][colonne] = code[ligne][colonne - 1]
+                    code[ligne][colonne][0] = y
         else:
             # Copier la ligne au dessus
             code[ligne] = code[ligne - 1]
+            for colonne in range(largeur):
+                pixel = image[ligne][colonne]
+                code[ligne][colonne][0] = getY(pixel[0], pixel[1], pixel[2])
 
     # Conversion YCbCr vers RGB
     imageDecode = image.copy()
