@@ -1,21 +1,16 @@
 # -*- coding: utf-8 -*-
 
-"""
-Discutez des effets positifs et négatifs du sous-échantillonnage 4 : 2 : 0 lors de laconversion RGB/Y′CBCR. Comparez avec au moins un autre sous-échantillonnagede votre choix.
-Les facteurs à discuter sont par exemples la qualité visuelle et letaux de compression.
-À votre avis, pourquoi fait-on un changement de l’espacede couleur avant de faire un sous-échantillonnage ?
-"""
-
 import matplotlib.pyplot as py
 from PIL import Image
 
+# Etape 1 : Conversion RGB/YCBCR avec sous echantillonnage 4 : 2 : 0
 nomImage = "fjords.jpg"
 hauteur = 400
 largeur = 600
 
 fig1 = py.figure(figsize=(10, 10))
 image = py.imread(nomImage)
-py.imshow(image)
+# py.imshow(image)
 # py.show()
 
 """
@@ -28,7 +23,61 @@ B=Y′+ 1.773(CB−128)
 """
 
 
-# Codage
+def getY(R, G, B):
+    temp = 0.299 * R + 0.587 * G + 0.114 * B
+    if temp > 255:
+        return 255
+    elif temp < 0:
+        return 0
+    return temp
+
+
+def getCb(B, Y):
+    temp = 128 + 0.564 * (B - Y)
+    if temp > 255:
+        return 255
+    elif temp < 0:
+        return 0
+    return temp
+
+
+def getCr(R, Y):
+    temp = 128 + 0.713 * (R - Y)
+    if temp > 255:
+        return 255
+    elif temp < 0:
+        return 0
+    return temp
+
+
+def getR(Y, Cr):
+    temp = Y + 1.403 * (Cr - 128)
+    if temp > 255:
+        return 255
+    elif temp < 0:
+        return 0
+    return temp
+
+
+def getG(Y, Cr, Cb):
+    temp = Y - 0.714 * (Cr - 128) - 0.344 * (Cb - 128)
+    if temp > 255:
+        return 255
+    elif temp < 0:
+        return 0
+    return temp
+
+
+def getB(Y, Cb):
+    temp = Y + 1.773 * (Cb - 128)
+    if temp > 255:
+        return 255
+    elif temp < 0:
+        return 0
+    return temp
+
+
+# Conversion 4:2:0
 code = []
 for ligne in range(hauteur):
     code.append([])
@@ -48,7 +97,7 @@ for ligne in range(hauteur):
                 cr = 128 + 0.713 * (pixel[0] - y)
                 code[ligne].append([y, cb, cr])
 
-# Decodage
+# INVERSE : Conversion
 imageDecode = Image.new('RGB', (largeur, hauteur), "black")
 pixels = imageDecode.load()
 
@@ -58,7 +107,8 @@ for colonne in range(largeur):
         r = ycbcr[0] + 1.403 * (ycbcr[2] - 128)
         g = ycbcr[0] - 0.714 * (ycbcr[2] - 128) - 0.344 * (ycbcr[1] - 128)
         b = ycbcr[0] + 1.773 * (ycbcr[1] - 128)
-        pixels[colonne, ligne] = (int(r), int(g), int(b))
+        pixels[colonne, ligne] = (int(getR(ycbcr[0], ycbcr[2])), int(g), int(b))
 
 py.imshow(imageDecode)
 py.show()
+#
