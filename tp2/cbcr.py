@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import matplotlib.pyplot as py
-from PIL import Image
 
 
 def getY(R, G, B):
@@ -100,9 +99,7 @@ def RGBtoYCbCr420(nomImage):
     for ligne in range(hauteur):
         if ligne % 2 == 0:
             for colonne in range(largeur):
-                """ Si ligne impaire lire les infos au dessus de sa case sinon calculer ycbcr pour la case 
-                courante (si colonne impaire lire la case precedente)
-                On test avec un seul Y"""
+                """ TODO: Calculer les Y """
                 if colonne % 2 == 0:
                     pixel = image[ligne][colonne]
                     y = getY(pixel[0], pixel[1], pixel[2])
@@ -130,5 +127,4 @@ def RGBtoYCbCr420(nomImage):
 
 
 # Main :
-nomImage = "fjords.jpg"
-RGBtoYCbCr420(nomImage)
+RGBtoYCbCr420("fjords.jpg")
