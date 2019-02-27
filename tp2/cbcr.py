@@ -18,8 +18,10 @@ B=Y′+ 1.773(CB−128)
 def getY(R, G, B):
     temp = 0.299 * R + 0.587 * G + 0.114 * B
     if temp > 255:
+        print('255')
         return 255
     elif temp < 0:
+        print('0')
         return 0
     return temp
 
@@ -27,8 +29,10 @@ def getY(R, G, B):
 def getCb(B, Y):
     temp = 128 + 0.564 * (B - Y)
     if temp > 255:
+        print('255')
         return 255
     elif temp < 0:
+        print('0')
         return 0
     return temp
 
@@ -36,8 +40,10 @@ def getCb(B, Y):
 def getCr(R, Y):
     temp = 128 + 0.713 * (R - Y)
     if temp > 255:
+        print('255')
         return 255
     elif temp < 0:
+        print('0')
         return 0
     return temp
 
@@ -45,8 +51,10 @@ def getCr(R, Y):
 def getR(Y, Cr):
     temp = Y + 1.403 * (Cr - 128)
     if temp > 255:
+        print('255')
         return 255
     elif temp < 0:
+        print('0')
         return 0
     return int(temp)
 
@@ -54,8 +62,10 @@ def getR(Y, Cr):
 def getG(Y, Cr, Cb):
     temp = Y - 0.714 * (Cr - 128) - 0.344 * (Cb - 128)
     if temp > 255:
+        print('255')
         return 255
     elif temp < 0:
+        print('0')
         return 0
     return int(temp)
 
@@ -63,8 +73,10 @@ def getG(Y, Cr, Cb):
 def getB(Y, Cb):
     temp = Y + 1.773 * (Cb - 128)
     if temp > 255:
+        print('255')
         return 255
     elif temp < 0:
+        print('0')
         return 0
     return int(temp)
 
@@ -73,72 +85,32 @@ nomImage = "fjords.jpg"
 
 fig1 = py.figure(figsize=(10, 10))
 image = py.imread(nomImage)
+# py.imshow(image)
+# py.show()
 
 hauteur = len(image) - 1
 largeur = len(image[0]) - 1
 
-# py.imshow(image)
-# py.show()
+# Conversion 4:4:4
+code = image.copy()
 
-# Conversion 4:2:0
-code = []
 for ligne in range(hauteur):
-    code.append([])
-    code.append([])
-    for colonne in range(largeur):
-        # Case haut-gauche
-        pixel = image[ligne][colonne]
-        y = getY(pixel[0], pixel[1], pixel[2])
-        cb = getCb(pixel[1], y)
-        cr = getCr(pixel[0], y)
-        code[ligne].append([y, cb, cr])
-
-        # Case haut-droite
-        pixel = image[ligne][colonne + 1]
-        y = getY(pixel[0], pixel[1], pixel[2])
-        code[ligne].append([y, cb, cr])
-
-        # Case bas-gauche
-        pixel = image[ligne + 1][colonne]
-        y = getY(pixel[0], pixel[1], pixel[2])
-        code[ligne + 1].append([y, cb, cr])
-
-        # Case bas-droite
-        pixel = image[ligne + 1][colonne + 1]
-        y = getY(pixel[0], pixel[1], pixel[2])
-        code[ligne + 1].append([y, cb, cr])
-
-        # On saute une colonne
-        colonne += 1
-
-    # On saute une ligne
-    ligne += 1
-
-    """if ligne % 2 != 0:
     for colonne in range(largeur):
         pixel = image[ligne][colonne]
-        y = 0.299 * pixel[0] + 0.587 * pixel[1] + 0.114 * pixel[2]
-        code[ligne].append([y, 0, 0])
-else:
-    for colonne in range(largeur):
-        pixel = image[ligne][colonne]
-        y = 0.299 * pixel[0] + 0.587 * pixel[1] + 0.114 * pixel[2]
-        if colonne % 2 != 0:
-            code[ligne].append([y, 0, 0])
-        else:
-            cb = 128 + 0.564 * (pixel[2] - y)
-            cr = 128 + 0.713 * (pixel[0] - y)
-            code[ligne].append([y, cb, cr])"""
-
+        y = getY(pixel[0], pixel[1], pixel[2])
+        code[ligne][colonne][0] = getY(pixel[0], pixel[1], pixel[2])
+        code[ligne][colonne][1] = getCb(pixel[1], y)
+        code[ligne][colonne][2] = getCr(pixel[0], y)
 
 # INVERSE : Conversion
-imageDecode = Image.new('RGB', (largeur, hauteur), "black")
-pixels = imageDecode.load()
+imageDecode = image.copy()
 
 for ligne in range(hauteur):
     for colonne in range(largeur):
         ycbcr = code[ligne][colonne]
-        pixels[colonne, ligne] = (getR(ycbcr[0], ycbcr[2]), getG(ycbcr[0], ycbcr[2], ycbcr[1]), getB(ycbcr[0], ycbcr[1]))
+        imageDecode[ligne][colonne] = (getR(ycbcr[0], ycbcr[2]),
+                                       getG(ycbcr[0], ycbcr[2], ycbcr[1]),
+                                       getB(ycbcr[0], ycbcr[1]))
 
 py.imshow(imageDecode)
 py.show()
