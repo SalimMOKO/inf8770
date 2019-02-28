@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import matplotlib.pyplot as py
+import numpy as np
 
 
 def getY(R, G, B):
@@ -36,7 +37,7 @@ def getR(Y, Cr):
         return 255
     elif temp < 0:
         return 0
-    return int(temp)
+    return temp
 
 
 def getG(Y, Cr, Cb):
@@ -45,7 +46,7 @@ def getG(Y, Cr, Cb):
         return 255
     elif temp < 0:
         return 0
-    return int(temp)
+    return temp
 
 
 def getB(Y, Cb):
@@ -54,7 +55,7 @@ def getB(Y, Cb):
         return 255
     elif temp < 0:
         return 0
-    return int(temp)
+    return temp
 
 
 def RGBtoYCbCr444(nomImage):
@@ -91,20 +92,19 @@ def RGBtoYCbCr444(nomImage):
 
 
 def RGBtoYCbCr420(nomImage):
-    image = py.imread(nomImage)
+    image = py.imread(nomImage).astype('float')
     hauteur = len(image)
     largeur = len(image[0])
-    code = image.copy()
+    code = np.zeros_like(image)
 
     for ligne in range(hauteur):
         if ligne % 2 == 0:
             for colonne in range(largeur):
-                """ TODO: Calculer les Y """
                 pixel = image[ligne][colonne]
                 y = getY(pixel[0], pixel[1], pixel[2])
                 if colonne % 2 == 0:
                     code[ligne][colonne][0] = y
-                    code[ligne][colonne][1] = getCb(pixel[1], y)
+                    code[ligne][colonne][1] = getCb(pixel[2], y)
                     code[ligne][colonne][2] = getCr(pixel[0], y)
                 else:
                     code[ligne][colonne] = code[ligne][colonne - 1]
@@ -117,7 +117,7 @@ def RGBtoYCbCr420(nomImage):
                 code[ligne][colonne][0] = getY(pixel[0], pixel[1], pixel[2])
 
     # Conversion YCbCr vers RGB
-    imageDecode = image.copy()
+    imageDecode = np.zeros_like(image)
 
     for ligne in range(hauteur):
         for colonne in range(largeur):
@@ -126,7 +126,7 @@ def RGBtoYCbCr420(nomImage):
                                            getG(ycbcr[0], ycbcr[2], ycbcr[1]),
                                            getB(ycbcr[0], ycbcr[1]))
 
-    py.imshow(imageDecode)
+    py.imshow(imageDecode.astype('uint8'))
     py.show()
 
 
