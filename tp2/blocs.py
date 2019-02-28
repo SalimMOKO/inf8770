@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import matplotlib.pyplot as py
 import numpy as np
 
@@ -40,6 +42,3 @@ while ligne < hauteur:
         colonne += 8
     ligne += 8
     indexLBlocs += 1
-
-py.imshow(imageReconstruite)
-py.show()
