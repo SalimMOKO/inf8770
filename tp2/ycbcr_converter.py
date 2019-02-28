@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import matplotlib.pyplot as py
 import numpy as np
 
 
@@ -58,27 +57,26 @@ def getB(Y, Cb):
     return temp
 
 
-def RGBtoYCbCr444(nomImage):
-    image = py.imread(nomImage)
-    # py.imshow(image)
-    # py.show()
-
+def RGBtoYCbCr444(image):
     hauteur = len(image)
     largeur = len(image[0])
-
-    # Conversion RGB vers YCbCr 4:4:4
-    code = image.copy()
+    code = np.zeros_like(image)
 
     for ligne in range(hauteur):
         for colonne in range(largeur):
             pixel = image[ligne][colonne]
             y = getY(pixel[0], pixel[1], pixel[2])
             code[ligne][colonne][0] = getY(pixel[0], pixel[1], pixel[2])
-            code[ligne][colonne][1] = getCb(pixel[1], y)
+            code[ligne][colonne][1] = getCb(pixel[2], y)
             code[ligne][colonne][2] = getCr(pixel[0], y)
 
-    # Conversion YCbCr vers RGB
-    imageDecode = image.copy()
+    return code
+
+
+def YCbCr444toRGB(code):
+    hauteur = len(code)
+    largeur = len(code[0])
+    imageDecode = np.zeros_like(code)
 
     for ligne in range(hauteur):
         for colonne in range(largeur):
@@ -87,12 +85,10 @@ def RGBtoYCbCr444(nomImage):
                                            getG(ycbcr[0], ycbcr[2], ycbcr[1]),
                                            getB(ycbcr[0], ycbcr[1]))
 
-    py.imshow(imageDecode)
-    py.show()
+    return imageDecode.astype('uint8')
 
 
-def RGBtoYCbCr420(nomImage):
-    image = py.imread(nomImage).astype('float')
+def RGBtoYCbCr420(image):
     hauteur = len(image)
     largeur = len(image[0])
     code = np.zeros_like(image)
@@ -110,14 +106,18 @@ def RGBtoYCbCr420(nomImage):
                     code[ligne][colonne] = code[ligne][colonne - 1]
                     code[ligne][colonne][0] = y
         else:
-            # Copier la ligne au dessus
             code[ligne] = code[ligne - 1]
             for colonne in range(largeur):
                 pixel = image[ligne][colonne]
                 code[ligne][colonne][0] = getY(pixel[0], pixel[1], pixel[2])
 
-    # Conversion YCbCr vers RGB
-    imageDecode = np.zeros_like(image)
+    return code
+
+
+def YCbCr420toRGB(code):
+    hauteur = len(code)
+    largeur = len(code[0])
+    imageDecode = np.zeros_like(code)
 
     for ligne in range(hauteur):
         for colonne in range(largeur):
@@ -126,9 +126,4 @@ def RGBtoYCbCr420(nomImage):
                                            getG(ycbcr[0], ycbcr[2], ycbcr[1]),
                                            getB(ycbcr[0], ycbcr[1]))
 
-    py.imshow(imageDecode.astype('uint8'))
-    py.show()
-
-
-# Main :
-RGBtoYCbCr420("fjords.jpg")
+    return imageDecode.astype('uint8')
