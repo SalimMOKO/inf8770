@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import ycbcr_converter as ycbcr
 import bloc_divider as bdiv
 import matplotlib.pyplot as py

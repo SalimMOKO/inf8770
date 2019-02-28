@@ -14,7 +14,7 @@ largeur = len(image[0])
 
 def divider8by8(image):
     if len(image) % 8 != 0 or len(image[0]) % 8 != 0:
-        print 'Erreur image non compatible'
+        print ('Erreur image non compatible')
         return -1
 
     blocs = []
