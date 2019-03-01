@@ -33,18 +33,6 @@ for bloc in imageQuantifiee:
             zigzag = list(map(str,zz.zig_zag(bloc,8)))
             zigzagString += zigzag
 
-rle_result = rle.codage(zigzagString)
-
-# On remplace chaque valeure binaire par un charactere ASCII afin d'y appliquer Huffman en tant que chaine de charactere
-for i in range(len(rle_result)):
-    rle_result[i] = chr(int(rle_result[i], 2))
-
-longueur_finale = int(hf.codage(rle_result))
-longueur_originale = len(image) * len(image[0]) * 3 * 8
-
-taux_compression = 1 - (Decimal(longueur_finale) / Decimal(longueur_originale))
-print('Le taux de compression est le suivant :', round(taux_compression, 4))
-
 # Inverser la quantification
 """imageDequantifiee = dct.reverseQuantification(imageQuantifiee)
 # Inverser le calcul des coefficients en recupérant les valeurs ycbcr
@@ -57,6 +45,14 @@ imageReconstituee = ycbcr.YCbCr420toRGB(imageReconstituee).astype('uint8')
 py.imshow(imageReconstituee)
 py.show()"""
 
-# Taux de compression :
-# Longueur originale => nombre de pixels x 3 couleurs x 8 bits
-# Longueur finale => nombre de bits de la chaine de bits
+rle_result = rle.codage(zigzagString)
+
+# On remplace chaque valeure binaire par un charactere ASCII afin d'y appliquer Huffman en tant que chaine de charactere
+for i in range(len(rle_result)):
+    rle_result[i] = chr(int(rle_result[i], 2))
+
+longueur_finale = int(hf.codage(rle_result))
+longueur_originale = len(image) * len(image[0]) * 3 * 8
+
+taux_compression = 1 - (Decimal(longueur_finale) / Decimal(longueur_originale))
+print('Le taux de compression est le suivant :', round(taux_compression, 4))
