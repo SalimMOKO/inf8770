@@ -20,5 +20,9 @@ decode444 = ycbcr.YCbCr444toRGB(code444)
 
 blocs = bdiv.divider8by8(image)
 imageReconstruite = bdiv.rebuildFrom8by8(blocs)
-# py.imshow(imageReconstruite)
-# py.show()
+py.imshow(imageReconstruite)
+py.show()
+
+# Taux de compression :
+# Longueur originale => nombre de pixels x 3 couleurs x 8 bits
+# Longueur finale => nombre de bits de la chaine de bits
