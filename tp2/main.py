@@ -19,7 +19,7 @@ decode444 = ycbcr.YCbCr444toRGB(code444)
 # py.imshow(decode444)
 # py.show()
 
-blocs = bdiv.divider8by8(image)
+blocs = bdiv.divider8by8(code420)
 blocs = blocs.astype('float64')
 
 dctImage = dct.dct(blocs)
@@ -31,6 +31,7 @@ imageDequantifiee = dct.reverseQuantification(imageQuantifiee)
 imageReverseDCT = dct.reversedct(imageDequantifiee)
 
 image = bdiv.inverseDivision8x8(imageReverseDCT, image)
+image = ycbcr.YCbCr420toRGB(image)
 image = image.astype('uint8')
 py.imshow(image)
 py.show()
