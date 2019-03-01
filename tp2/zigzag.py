@@ -26,3 +26,24 @@ def zig_zag(input_matrix,block_size):
                 index += 1
                 z[index] = input_matrix[i - j, j][2]
     return z
+
+def zig_zag_reverse(input_matrix,block_size):
+    output_matrix = np.empty([image.shape[0],image.shape[1],3])
+    index = -1
+    bound = 0
+    for i in range(0, 2 * block_size -1):
+        if i < block_size:
+            bound = 0
+        else:
+            bound = i - block_size + 1
+        for j in range(bound, i - bound + 1):
+            index += 3
+            if i % 2 == 1:
+                output_matrix[j, i - j][0] = input_matrix[index]
+                output_matrix[j, i - j][1] = input_matrix[index]
+                output_matrix[j, i - j][2] = input_matrix[index]
+            else:
+                output_matrix[i - j, j][0] = input_matrix[index]
+                output_matrix[i - j, j][1] = input_matrix[index]
+                output_matrix[i - j, j][2] = input_matrix[index]
+    return output_matrix
