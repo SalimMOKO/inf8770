@@ -22,10 +22,10 @@ def divider8by8_blocs(image):
 
 
 def rebuildFrom8by8(blocs):
-    image = py.imread("fjords.jpg")
-    hauteur = len(image)
-    largeur = len(image[0])
-    imageReconstruite = np.zeros_like(image)
+    imageModel = py.imread("fjords.jpg")
+    hauteur = len(imageModel)
+    largeur = len(imageModel[0])
+    imageReconstruite = np.zeros_like(imageModel) # Pour obtenir facilement un array correspondant aux dimensions d'une image 600*400
     ligne = 0
     indexCBlocs = 0
     while ligne < hauteur:

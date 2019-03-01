@@ -5,7 +5,7 @@ import numpy as np
 
 
 def codage(Message):
-    compteur = 2 # La meilleure taille pour ce message est 2 bits. Plusieurs courtes répétitions
+    compteur = 4
 
     dictsymb = [Message[0]]
     dictbin = ["{:b}".format(0)]
