@@ -18,27 +18,27 @@ Quant1= np.matrix('16 11 10 16 24 40 51 61;\
         49 64 78 77 103 121 120 101;\
         72 92 95 98 112 100 103 99').astype('float')
 
-def dct(blocs):
+def discreteCosineTransform(blocs):
     img = np.zeros_like(blocs)
     blocs[:] -= 128
     for bloc in blocs:
-        BlocDCT = dctpack.dct(dctpack.dct(bloc[:, :, 0], axis=0, norm='ortho'), axis=1, norm='ortho')
-        BlocDCT2 = dctpack.dct(dctpack.dct(bloc[:, :, 1], axis=0, norm='ortho'), axis=1, norm='ortho')
-        BlocDCT3 = dctpack.dct(dctpack.dct(bloc[:, :, 2], axis=0, norm='ortho'), axis=1, norm='ortho')
-        bloc[:, :, 0] = BlocDCT
-        bloc[:, :, 1] = BlocDCT2
-        bloc[:, :, 2] = BlocDCT3
+        BlocDCTY = dctpack.dct(dctpack.dct(bloc[:, :, 0], axis=0, norm='ortho'), axis=1, norm='ortho')
+        BlocDCTCb = dctpack.dct(dctpack.dct(bloc[:, :, 1], axis=0, norm='ortho'), axis=1, norm='ortho')
+        BlocDCTCr = dctpack.dct(dctpack.dct(bloc[:, :, 2], axis=0, norm='ortho'), axis=1, norm='ortho')
+        bloc[:, :, 0] = BlocDCTY
+        bloc[:, :, 1] = BlocDCTCb
+        bloc[:, :, 2] = BlocDCTCr
     return blocs
 
-def reversedct(blocs):
+def reverseDCT(blocs):
     img = np.zeros_like(blocs)
     for bloc in blocs:
-        BlocIDCT = dctpack.idct(dctpack.idct(bloc[:, :, 0], axis=0, norm='ortho'), axis=1, norm='ortho')
-        BlocIDCT2 = dctpack.idct(dctpack.idct(bloc[:, :, 1], axis=0, norm='ortho'), axis=1, norm='ortho')
-        BlocIDCT3 = dctpack.idct(dctpack.idct(bloc[:, :, 2], axis=0, norm='ortho'), axis=1, norm='ortho')
-        bloc[:, :, 0] = BlocIDCT
-        bloc[:, :, 1] = BlocIDCT2
-        bloc[:, :, 2] = BlocIDCT3
+        BlocIDCTY = dctpack.idct(dctpack.idct(bloc[:, :, 0], axis=0, norm='ortho'), axis=1, norm='ortho')
+        BlocIDCTCb = dctpack.idct(dctpack.idct(bloc[:, :, 1], axis=0, norm='ortho'), axis=1, norm='ortho')
+        BlocIDCTCr = dctpack.idct(dctpack.idct(bloc[:, :, 2], axis=0, norm='ortho'), axis=1, norm='ortho')
+        bloc[:, :, 0] = BlocIDCTY
+        bloc[:, :, 1] = BlocIDCTCb
+        bloc[:, :, 2] = BlocIDCTCr
     blocs[:] += 128
     return blocs
 

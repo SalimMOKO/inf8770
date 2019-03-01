@@ -3,8 +3,6 @@
 import ycbcr_converter as ycbcr
 import bloc_divider as bdiv
 import matplotlib.pyplot as py
-import huffman
-import parplages
 import discreteCosineTransform as dct
 
 image = py.imread('C:/Users/USER/Desktop/INF8770_TP2/inf8770/tp2/fjords.jpg').astype('float')
@@ -19,18 +17,18 @@ decode444 = ycbcr.YCbCr444toRGB(code444)
 # py.imshow(decode444)
 # py.show()
 
-blocs = bdiv.divider8by8(code420)
+blocs = bdiv.divider8by8_blocs(code420)
 blocs = blocs.astype('float64')
 
-dctImage = dct.dct(blocs)
+dctImage = dct.discreteCosineTransform(blocs)
 
 imageQuantifiee = dct.quantification(dctImage)
 
 imageDequantifiee = dct.reverseQuantification(imageQuantifiee)
 
-imageReverseDCT = dct.reversedct(imageDequantifiee)
+imageReverseDCT = dct.reverseDCT(imageDequantifiee)
 
-image = bdiv.inverseDivision8x8(imageReverseDCT, image)
+image = bdiv.rebuildFrom8by8(imageReverseDCT)
 image = ycbcr.YCbCr420toRGB(image)
 image = image.astype('uint8')
 py.imshow(image)
