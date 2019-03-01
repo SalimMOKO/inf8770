@@ -16,9 +16,9 @@ def zig_zag(input_matrix,block_size):
             if i % 2 == 1:
                 z[index] = input_matrix[j, i-j][0]
                 index += 1
-                z[index] = input_matrix[j, i - j][0]
+                z[index] = input_matrix[j, i - j][1]
                 index += 1
-                z[index] = input_matrix[j, i - j][0]
+                z[index] = input_matrix[j, i - j][2]
             else:
                 z[index] = input_matrix[i-j, j][0]
                 index += 1
