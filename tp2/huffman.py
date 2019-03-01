@@ -83,7 +83,4 @@ def codage(Message):
         MessageCode += [substitution[0][1]]
         longueur += len(substitution[0][1])
 
-    print("Longueur = {0}".format(longueur))
-    print("Longueur originale = {0}".format(longueurOriginale))
-
-    return MessageCode
+    return longueur

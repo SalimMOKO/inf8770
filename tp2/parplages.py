@@ -23,7 +23,6 @@ def codage(Message):
 
     dictsymb.sort()
     dictionnaire = np.transpose([dictsymb, dictbin])
-    print(dictionnaire)
 
     i=0;
     MessageCode = []
@@ -42,8 +41,5 @@ def codage(Message):
         codebinaire = dictbin[dictsymb.index(carac)]
         MessageCode += [coderepetition, codebinaire]
         longueur += len(codebinaire) + len(coderepetition)
-
-    print("Longueur = {0}".format(longueur))
-    print("Longueur originale = {0}".format(longueurOriginale))
 
     return MessageCode
