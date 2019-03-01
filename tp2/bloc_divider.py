@@ -4,14 +4,9 @@ import matplotlib.pyplot as py
 import numpy as np
 
 
-image = py.imread("fjords.jpg")
-
-hauteur = len(image)
-largeur = len(image[0])
-
-
-
 def divider8by8_blocs(image):
+    hauteur = len(image)
+    largeur = len(image[0])
     if len(image) % 8 != 0 or len(image[0]) % 8 != 0:
         print ('Erreur image non compatible')
         return -1
@@ -25,7 +20,11 @@ def divider8by8_blocs(image):
         ligne += 8
     return np.array(blocs)
 
+
 def  rebuildFrom8by8(blocs):
+    image = py.imread("fjords.jpg")
+    hauteur = len(image)
+    largeur = len(image[0])
     imageReconstruite = np.zeros_like(image)
     ligne = 0
     indexCBlocs = 0

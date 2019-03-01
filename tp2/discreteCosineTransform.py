@@ -1,10 +1,9 @@
-import matplotlib.pyplot as py
+# -*- coding: utf-8 -*-
+# Source : https://github.com/gabilodeau/INF8770
+
 import numpy as np
 import scipy.fftpack as dctpack
 
-image = py.imread('C:/Users/USER/Desktop/INF8770_TP2/inf8770/tp2/fjords.jpg').astype('float')
-hauteur = len(image)
-largeur = len(image[0])
 dctArray = []
 Quant1= np.matrix('16 11 10 16 24 40 51 61;\
         12 12 14 19 26 58 60 55;\
@@ -14,6 +13,7 @@ Quant1= np.matrix('16 11 10 16 24 40 51 61;\
         24 35 55 64 81 104 103 92;\
         49 64 78 77 103 121 120 101;\
         72 92 95 98 112 100 103 99').astype('float')
+
 
 def discreteCosineTransform(blocs):
     blocs[:] -= 128
@@ -26,6 +26,7 @@ def discreteCosineTransform(blocs):
         bloc[:, :, 2] = BlocDCTCr
     return blocs
 
+
 def reverseDCT(blocs):
     for bloc in blocs:
         BlocIDCTY = dctpack.idct(dctpack.idct(bloc[:, :, 0], axis=0, norm='ortho'), axis=1, norm='ortho')
@@ -36,6 +37,7 @@ def reverseDCT(blocs):
         bloc[:, :, 2] = BlocIDCTCr
     blocs[:] += 128
     return blocs
+
 
 def quantification(blocs):
     for bloc in blocs:

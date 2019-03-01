@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Source : https://github.com/gabilodeau/INF8770
 
 import numpy as np
 from anytree import Node, RenderTree, PreOrderIter, AsciiStyle
