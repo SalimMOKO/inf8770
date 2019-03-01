@@ -9,6 +9,16 @@ image = py.imread("fjords.jpg")
 hauteur = len(image)
 largeur = len(image[0])
 
+
+
+
+def divider8by8(image):
+    bloc8x8 = []
+    for row in range(0, image.shape[0] - 8 + 1, 8):
+        for column in range(0, image.shape[1] - 8 + 1, 8):
+            bloc8x8.append(image[row:row + 8, column:column + 8])
+    return np.array(bloc8x8)
+
 def divider8by8_blocs(image):
     if len(image) % 8 != 0 or len(image[0]) % 8 != 0:
         print ('Erreur image non compatible')

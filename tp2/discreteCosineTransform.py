@@ -1,8 +1,5 @@
 import matplotlib.pyplot as py
 import numpy as np
-
-import matplotlib.pyplot as py
-import numpy as np
 import scipy.fftpack as dctpack
 
 image = py.imread('C:/Users/USER/Desktop/INF8770_TP2/inf8770/tp2/fjords.jpg').astype('float')
@@ -19,7 +16,6 @@ Quant1= np.matrix('16 11 10 16 24 40 51 61;\
         72 92 95 98 112 100 103 99').astype('float')
 
 def discreteCosineTransform(blocs):
-    img = np.zeros_like(blocs)
     blocs[:] -= 128
     for bloc in blocs:
         BlocDCTY = dctpack.dct(dctpack.dct(bloc[:, :, 0], axis=0, norm='ortho'), axis=1, norm='ortho')
@@ -31,7 +27,6 @@ def discreteCosineTransform(blocs):
     return blocs
 
 def reverseDCT(blocs):
-    img = np.zeros_like(blocs)
     for bloc in blocs:
         BlocIDCTY = dctpack.idct(dctpack.idct(bloc[:, :, 0], axis=0, norm='ortho'), axis=1, norm='ortho')
         BlocIDCTCb = dctpack.idct(dctpack.idct(bloc[:, :, 1], axis=0, norm='ortho'), axis=1, norm='ortho')
