@@ -1,0 +1,112 @@
+import cv2
+import numpy as np
+import math
+from matplotlib import pyplot as py
+
+DETECTION_FONDU = 8000
+DETECTION_COUPURE = 22000,30800
+def main():
+    indexImage = 1
+    capture = cv2.VideoCapture("julia.avi")
+    ret, frame = capture.read()
+    masks = createMasks(frame)
+    hists = createHists(masks, frame)
+    current = hists
+    previous = hists
+    print('Traitement des images en cours ...')
+    while ret:
+        if frame is not None:
+            img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        masks = createMasks(img)
+        hists = createHists(masks,img)
+        if(indexImage == 1):
+            previous = hists
+        if(indexImage == 2):
+            current = hists
+        if(indexImage > 2):
+            previous = current
+            current = hists
+        differenceR,differenceG,differenceB = getMasksDifference(current, previous)
+        checkMaskDifferences(differenceR,differenceG,differenceB,indexImage)
+        indexImage=indexImage+1
+        ret, frame = capture.read()
+    print("End of video at ", indexImage)
+    '''py.plot(differenceHist)
+    py.show()'''
+    capture.release()
+    cv2.destroyAllWindows()
+def createMasks(img):
+    masks = []
+    height, width, channels = img.shape
+
+    mask11 = np.zeros(img.shape[:2], np.uint8)
+    mask11[0:math.floor(width / 2), 0:math.floor(height / 3)] = 255
+    masks.append(mask11)
+
+    mask12 = np.zeros(img.shape[:2], np.uint8)
+    mask12[0:math.floor(width / 2), math.floor(height / 3):math.floor(2*height / 3)] = 255
+    masks.append(mask12)
+
+    mask13 = np.zeros(img.shape[:2], np.uint8)
+    mask13[0:math.floor(width / 2), math.floor(2*height / 3):height] = 255
+    masks.append(mask13)
+
+    mask21 = np.zeros(img.shape[:2], np.uint8)
+    mask21[math.floor(width / 2):width, 0:math.floor(height / 3)] = 255
+    masks.append(mask21)
+
+    mask22 = np.zeros(img.shape[:2], np.uint8)
+    mask22[math.floor(width / 2):width, math.floor(height / 3):math.floor(2*height / 3)] = 255
+    masks.append(mask22)
+
+    mask23 = np.zeros(img.shape[:2], np.uint8)
+    mask23[math.floor(width / 2):width, math.floor(2*height / 3):height] = 255
+    masks.append(mask23)
+    return masks
+
+def createHists(masks,img):
+    histsG = []
+    histsR= []
+    histsB = []
+    total = []
+    for i in range(0,6):
+        hist_mask_R = cv2.calcHist([img], [0], masks[i], [256], [0, 256])
+        hist_mask_G = cv2.calcHist([img], [1], masks[i], [256], [0, 256])
+        hist_mask_B = cv2.calcHist([img], [2], masks[i], [256], [0, 256])
+        histsR .append(hist_mask_R)
+        histsG.append(hist_mask_G)
+        histsB.append(hist_mask_B)
+    total.append(histsR)
+    total.append(histsG)
+    total.append(histsB)
+    return total
+
+def getMasksDifference(currentHists,lastHists):
+    differenceR = []
+    differenceG = []
+    differenceB = []
+    for k in range(0,3):
+        for i in range(0,6):
+            if(k == 0):
+                differenceR.append(math.sqrt((np.square(currentHists[k][i] - lastHists[k][i])).sum()))
+            if (k == 1):
+                differenceG.append(math.sqrt((np.square(currentHists[k][i] - lastHists[k][i])).sum()))
+            if (k == 2):
+                differenceB.append(math.sqrt((np.square(currentHists[k][i] - lastHists[k][i])).sum()))
+    return differenceR,differenceG,differenceB
+
+def checkMaskDifferences(differenceR,differenceG,differenceB,indexImage):
+    differenceB = np.sum(differenceB)
+    differenceG = np.sum(differenceG)
+    differenceR = np.sum(differenceR)
+    for i in range(0,6):
+        if(differenceR>12000 and differenceG>12000 and differenceB>12000 ):
+            print('Coupure détectée bloc numero :')
+            print(i)
+            print('image numero :')
+            print(indexImage)
+            if(indexImage == 2016):
+                print(differenceR)
+                print(differenceG)
+                print(differenceB)
+main()
