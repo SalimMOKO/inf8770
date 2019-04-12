@@ -23,7 +23,7 @@ def main():
         current = createHists(masks,img)
         for i in range(0, len(current), 32):
             quantification.append(current[i:i + 32].sum())
-        quantificationArray.append(quantification)
+        quantificationArray.append(current)
         if(indexImage >1 ):
             difference = getMasksDifference(np.array(quantificationArray[indexImage-1]), np.array(quantificationArray[indexImage-2]))
             differencesHist.append(difference)
@@ -95,5 +95,16 @@ def filter(fondus,differenceHists):
         if(differenceHists[potentialCut[i]-2]>DETECTION_COUPURE):
             coupures.append(potentialCut[i])
     return fonduArray,coupures
+
+def printSolutionImages(coupures, fondus):
+    capture = cv2.VideoCapture("julia.avi")
+    ret, frame = capture.read()
+    indexImage = 1
+    while ret:
+        if frame is not None:
+            img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        if indexImage in  coupures or indexImage in fondus:
+            py.plot(img)
+            py.show()
 
 main()
